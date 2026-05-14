@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referensi Formula Excel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-2: #f5f5f3;
+    --bg-3: #eeecea;
+    --text: #1a1a18;
+    --text-2: #5a5a56;
+    --text-3: #9a9994;
+    --border: rgba(0,0,0,0.10);
+    --border-2: rgba(0,0,0,0.18);
+    --accent: #1a1a18;
+    --green-bg: #EAF3DE; --green-text: #27500A; --green-bd: #639922;
+    --amber-bg: #FAEEDA; --amber-text: #633806; --amber-bd: #BA7517;
+    --coral-bg: #FAECE7; --coral-text: #712B13; --coral-bd: #993C1D;
+    --blue-bg: #E6F1FB; --blue-text: #0C447C; --blue-bd: #378ADD;
+    --red-bg: #FCEBEB; --red-text: #791F1F;
+    --radius: 10px; --radius-sm: 6px;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg-2: #262624; --bg-3: #2e2e2c;
+      --text: #f0efe8; --text-2: #a8a89e; --text-3: #6a6a64;
+      --border: rgba(255,255,255,0.08); --border-2: rgba(255,255,255,0.15);
+      --green-bg: #173404; --green-text: #C0DD97; --green-bd: #3B6D11;
+      --amber-bg: #412402; --amber-text: #FAC775; --amber-bd: #854F0B;
+      --coral-bg: #4A1B0C; --coral-text: #F0997B; --coral-bd: #993C1D;
+      --blue-bg: #042C53; --blue-text: #85B7EB; --blue-bd: #185FA5;
+      --red-bg: #501313; --red-text: #F09595;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg-3);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .page-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .page-header { margin-bottom: 2rem; }
+  .page-title { font-size: 26px; font-weight: 500; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+  .page-title i { font-size: 24px; color: var(--green-bd); }
+  .page-sub { font-size: 14px; color: var(--text-2); }
+
+  .controls { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+
+  .search-wrap { position: relative; margin-bottom: 12px; }
+  .search-wrap i { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--text-3); pointer-events: none; }
+  .search-wrap input {
+    width: 100%; padding: 9px 12px 9px 36px;
+    background: var(--bg-2); border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm); font-family: var(--font); font-size: 14px;
+    color: var(--text); outline: none; transition: border-color 0.15s;
+  }
+  .search-wrap input:focus { border-color: var(--border-2); background: var(--bg); }
+  .search-wrap input::placeholder { color: var(--text-3); }
+
+  .filter-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
+  .filter-group:last-child { margin-bottom: 0; }
+  .filter-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; margin-right: 2px; }
+  .fbtn {
+    background: transparent; border: 0.5px solid var(--border);
+    border-radius: 20px; padding: 4px 12px; font-size: 12px; font-family: var(--font);
+    cursor: pointer; color: var(--text-2); transition: all 0.15s; display: flex; align-items: center; gap: 5px;
+  }
+  .fbtn:hover { background: var(--bg-2); color: var(--text); }
+  .fbtn.active { background: var(--bg-2); color: var(--text); border-color: var(--border-2); font-weight: 500; }
+  .fbtn[data-lv="Dasar"].active { background: var(--green-bg); color: var(--green-text); border-color: var(--green-bd); }
+  .fbtn[data-lv="Menengah"].active { background: var(--amber-bg); color: var(--amber-text); border-color: var(--amber-bd); }
+  .fbtn[data-lv="Lanjut"].active { background: var(--coral-bg); color: var(--coral-text); border-color: var(--coral-bd); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1.25rem; }
+  .stat-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; text-align: center; box-shadow: var(--shadow); }
+  .stat-num { font-size: 22px; font-weight: 500; }
+  .stat-lbl { font-size: 11px; color: var(--text-2); margin-top: 1px; }
+
+  .section-head { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin: 1.5rem 0 8px; display: flex; align-items: center; gap: 6px; }
+  .section-head .dot { width: 8px; height: 8px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
+
+  .card {
+    background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow);
+  }
+  .card:hover { border-color: var(--border-2); }
+  .card.open { border-color: var(--border-2); }
+
+  .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .card-name { font-size: 15px; font-weight: 500; font-family: var(--mono); color: var(--text); }
+  .card-meta { font-size: 11px; color: var(--text-3); margin: 3px 0 6px; display: flex; align-items: center; gap: 5px; }
+  .card-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .badges { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 500; white-space: nowrap; }
+  .badge-hot { background: var(--red-bg); color: var(--red-text); }
+  .badge-d { background: var(--green-bg); color: var(--green-text); }
+  .badge-m { background: var(--amber-bg); color: var(--amber-text); }
+  .badge-l { background: var(--coral-bg); color: var(--coral-text); }
+  .chev { font-size: 14px; color: var(--text-3); transition: transform 0.2s; flex-shrink: 0; margin-top: 2px; }
+  .card.open .chev { transform: rotate(180deg); }
+
+  .detail { display: none; margin-top: 12px; border-top: 0.5px solid var(--border); padding-top: 12px; }
+  .card.open .detail { display: block; }
+
+  .detail-label { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+  .syntax-box {
+    background: var(--bg-2); border-radius: var(--radius-sm);
+    padding: 8px 10px; font-family: var(--mono); font-size: 12px;
+    color: var(--text); margin-bottom: 10px; word-break: break-all;
+  }
+  .example-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .ex-code { font-family: var(--mono); font-size: 12px; background: var(--blue-bg); color: var(--blue-text); padding: 3px 8px; border-radius: 4px; }
+  .ex-res { font-size: 12px; color: var(--text-2); }
+  .tip-box {
+    margin-top: 8px; background: var(--bg-2); border-radius: var(--radius-sm);
+    padding: 8px 10px; font-size: 12px; color: var(--text-2); line-height: 1.5;
+    display: flex; gap: 6px; align-items: flex-start;
+  }
+  .tip-box i { flex-shrink: 0; font-size: 14px; margin-top: 1px; color: var(--amber-bd); }
+
+  .empty { text-align: center; padding: 3rem; color: var(--text-3); font-size: 14px; }
+  .empty i { font-size: 32px; display: block; margin-bottom: 8px; }
+
+  .footer { text-align: center; margin-top: 3rem; font-size: 12px; color: var(--text-3); }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-title"><i class="ti ti-table"></i> Referensi Formula Excel</div>
+    <div class="page-sub">60+ formula dikelompokkan berdasarkan kategori · Klik kartu untuk lihat sintaks & contoh</div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <i class="ti ti-search"></i>
+      <input type="text" id="searchInput" placeholder="Cari nama formula atau deskripsi...">
+    </div>
+    <div class="filter-group" id="catFilters"></div>
+    <div class="filter-group">
+      <span class="filter-label">Level:</span>
+      <div id="lvlFilters" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    </div>
+  </div>
+
+  <div class="stats-row" id="statsRow"></div>
+  <div id="content"></div>
+
+  <div class="footer">Klik kartu untuk expand · Filter & search tersedia di atas</div>
+</div>
+
+<script>
+const CAT_COLORS = {
+  "Matematika": "#1D9E75", "Teks": "#378ADD", "Logika": "#D4537E",
+  "Cari & Referensi": "#7F77DD", "Tanggal & Waktu": "#D85A30",
+  "Keuangan": "#BA7517", "Info & Error": "#888780", "Array Dinamis": "#0F6E56"
+};
+
+const formulas = [
+  {name:"SUM",cat:"Matematika",level:"Dasar",hot:true,desc:"Menjumlahkan semua angka dalam rentang sel.",syntax:"=SUM(angka1, [angka2], ...)",example:"=SUM(A1:A10)",result:"Hasil: 550",tip:"Shortcut: Alt + = untuk auto sum."},
+  {name:"AVERAGE",cat:"Matematika",level:"Dasar",hot:true,desc:"Menghitung rata-rata dari sekumpulan angka.",syntax:"=AVERAGE(angka1, [angka2], ...)",example:"=AVERAGE(B2:B20)",result:"Rata-rata nilai",tip:"Mengabaikan sel kosong, tapi menghitung sel bernilai 0."},
+  {name:"COUNT",cat:"Matematika",level:"Dasar",hot:true,desc:"Menghitung jumlah sel yang berisi angka.",syntax:"=COUNT(nilai1, [nilai2], ...)",example:"=COUNT(A1:A100)",result:"Jumlah sel angka"},
+  {name:"COUNTA",cat:"Matematika",level:"Dasar",hot:true,desc:"Menghitung semua sel yang tidak kosong (angka, teks, dll).",syntax:"=COUNTA(nilai1, [nilai2], ...)",example:"=COUNTA(A1:A50)",result:"Jumlah sel tidak kosong"},
+  {name:"COUNTBLANK",cat:"Matematika",level:"Dasar",hot:false,desc:"Menghitung jumlah sel yang kosong dalam rentang.",syntax:"=COUNTBLANK(rentang)",example:"=COUNTBLANK(A1:A50)",result:"Jumlah sel kosong"},
+  {name:"MIN",cat:"Matematika",level:"Dasar",hot:true,desc:"Mengembalikan nilai terkecil dari sekumpulan angka.",syntax:"=MIN(angka1, [angka2], ...)",example:"=MIN(C1:C50)",result:"Nilai terkecil"},
+  {name:"MAX",cat:"Matematika",level:"Dasar",hot:true,desc:"Mengembalikan nilai terbesar dari sekumpulan angka.",syntax:"=MAX(angka1, [angka2], ...)",example:"=MAX(C1:C50)",result:"Nilai terbesar"},
+  {name:"ROUND",cat:"Matematika",level:"Dasar",hot:true,desc:"Membulatkan angka ke jumlah digit desimal tertentu.",syntax:"=ROUND(angka, jumlah_digit)",example:"=ROUND(3.14159, 2)",result:"3.14",tip:"ROUNDUP selalu ke atas, ROUNDDOWN selalu ke bawah."},
+  {name:"ABS",cat:"Matematika",level:"Dasar",hot:false,desc:"Mengembalikan nilai absolut (tanpa tanda negatif).",syntax:"=ABS(angka)",example:"=ABS(-25)",result:"25"},
+  {name:"MOD",cat:"Matematika",level:"Menengah",hot:false,desc:"Mengembalikan sisa hasil bagi.",syntax:"=MOD(angka, pembagi)",example:"=MOD(10,3)",result:"1"},
+  {name:"SUMIF",cat:"Matematika",level:"Menengah",hot:true,desc:"Menjumlahkan sel yang memenuhi satu kriteria tertentu.",syntax:"=SUMIF(rentang, kriteria, [rentang_sum])",example:"=SUMIF(A:A,\"Jakarta\",B:B)",result:"Total penjualan Jakarta",tip:"Gunakan SUMIFS untuk lebih dari satu kriteria."},
+  {name:"SUMIFS",cat:"Matematika",level:"Menengah",hot:true,desc:"Menjumlahkan sel yang memenuhi beberapa kriteria sekaligus.",syntax:"=SUMIFS(rentang_sum, rentang1, kriteria1, ...)",example:"=SUMIFS(C:C,A:A,\"Pria\",B:B,\">25\")",result:"Total sesuai kriteria ganda"},
+  {name:"COUNTIF",cat:"Matematika",level:"Menengah",hot:true,desc:"Menghitung sel yang memenuhi satu kriteria tertentu.",syntax:"=COUNTIF(rentang, kriteria)",example:"=COUNTIF(A1:A50,\">80\")",result:"Jumlah nilai di atas 80"},
+  {name:"COUNTIFS",cat:"Matematika",level:"Menengah",hot:true,desc:"Menghitung sel yang memenuhi beberapa kriteria sekaligus.",syntax:"=COUNTIFS(rentang1, kriteria1, rentang2, kriteria2, ...)",example:"=COUNTIFS(A:A,\"A\",B:B,\"Lulus\")",result:"Jumlah siswa kelas A yang lulus"},
+  {name:"AVERAGEIF",cat:"Matematika",level:"Menengah",hot:false,desc:"Menghitung rata-rata sel yang memenuhi satu kriteria.",syntax:"=AVERAGEIF(rentang, kriteria, [rentang_average])",example:"=AVERAGEIF(B:B,\">=70\",C:C)",result:"Rata-rata kondisional"},
+  {name:"STDEV",cat:"Matematika",level:"Menengah",hot:false,desc:"Menghitung standar deviasi sampel dari sekumpulan data.",syntax:"=STDEV(angka1, [angka2], ...)",example:"=STDEV(D2:D100)",result:"Standar deviasi sampel",tip:"Gunakan STDEVP untuk populasi keseluruhan."},
+  {name:"MEDIAN",cat:"Matematika",level:"Menengah",hot:false,desc:"Mengembalikan nilai tengah dari sekumpulan angka.",syntax:"=MEDIAN(angka1, [angka2], ...)",example:"=MEDIAN(A1:A20)",result:"Nilai median"},
+  {name:"RANK",cat:"Matematika",level:"Menengah",hot:true,desc:"Mengembalikan peringkat suatu angka dalam daftar.",syntax:"=RANK(angka, ref, [urutan])",example:"=RANK(A2, A$2:A$20, 0)",result:"Peringkat nilai (0=terbesar dulu)",tip:"Gunakan RANK.EQ untuk versi terbaru Excel."},
+  {name:"LARGE",cat:"Matematika",level:"Menengah",hot:false,desc:"Mengembalikan nilai terbesar ke-n dari kumpulan data.",syntax:"=LARGE(array, k)",example:"=LARGE(A1:A20, 3)",result:"Nilai terbesar ke-3"},
+  {name:"SMALL",cat:"Matematika",level:"Menengah",hot:false,desc:"Mengembalikan nilai terkecil ke-n dari kumpulan data.",syntax:"=SMALL(array, k)",example:"=SMALL(A1:A20, 2)",result:"Nilai terkecil ke-2"},
+  {name:"LEFT",cat:"Teks",level:"Dasar",hot:true,desc:"Mengambil sejumlah karakter dari kiri sebuah teks.",syntax:"=LEFT(teks, [jumlah_karakter])",example:"=LEFT(\"Indonesia\", 5)",result:"\"Indon\""},
+  {name:"RIGHT",cat:"Teks",level:"Dasar",hot:true,desc:"Mengambil sejumlah karakter dari kanan sebuah teks.",syntax:"=RIGHT(teks, [jumlah_karakter])",example:"=RIGHT(\"Bandung\", 4)",result:"\"ndung\""},
+  {name:"MID",cat:"Teks",level:"Dasar",hot:true,desc:"Mengambil karakter dari posisi tertentu di tengah teks.",syntax:"=MID(teks, posisi_awal, jumlah_karakter)",example:"=MID(\"Bandung\", 2, 4)",result:"\"andu\""},
+  {name:"LEN",cat:"Teks",level:"Dasar",hot:true,desc:"Menghitung jumlah karakter dalam sebuah teks.",syntax:"=LEN(teks)",example:"=LEN(\"Halo dunia\")",result:"10"},
+  {name:"UPPER",cat:"Teks",level:"Dasar",hot:false,desc:"Mengubah semua huruf menjadi kapital.",syntax:"=UPPER(teks)",example:"=UPPER(\"halo\")",result:"\"HALO\""},
+  {name:"LOWER",cat:"Teks",level:"Dasar",hot:false,desc:"Mengubah semua huruf menjadi huruf kecil.",syntax:"=LOWER(teks)",example:"=LOWER(\"HALO\")",result:"\"halo\""},
+  {name:"PROPER",cat:"Teks",level:"Dasar",hot:false,desc:"Mengubah huruf pertama setiap kata menjadi kapital.",syntax:"=PROPER(teks)",example:"=PROPER(\"budi santoso\")",result:"\"Budi Santoso\""},
+  {name:"TRIM",cat:"Teks",level:"Dasar",hot:true,desc:"Menghapus spasi berlebih di awal, akhir, dan tengah teks.",syntax:"=TRIM(teks)",example:"=TRIM(\"  hello  world \")",result:"\"hello world\"",tip:"Sangat berguna saat membersihkan data impor."},
+  {name:"CONCATENATE",cat:"Teks",level:"Dasar",hot:true,desc:"Menggabungkan beberapa teks menjadi satu.",syntax:"=CONCATENATE(teks1, [teks2], ...)",example:"=CONCATENATE(A2,\" \",B2)",result:"\"Budi Santoso\"",tip:"Gunakan operator & sebagai alternatif: =A2&\" \"&B2"},
+  {name:"TEXTJOIN",cat:"Teks",level:"Menengah",hot:true,desc:"Menggabungkan banyak teks dengan pemisah, bisa lewati sel kosong.",syntax:"=TEXTJOIN(pemisah, abaikan_kosong, teks1, ...)",example:"=TEXTJOIN(\", \", TRUE, A1:A5)",result:"\"A, B, C, D, E\""},
+  {name:"FIND",cat:"Teks",level:"Menengah",hot:true,desc:"Mencari posisi teks dalam teks lain (case-sensitive).",syntax:"=FIND(teks_cari, dalam_teks, [mulai_dari])",example:"=FIND(\"@\",\"budi@email.com\")",result:"5",tip:"SEARCH mirip tapi tidak case-sensitive."},
+  {name:"SUBSTITUTE",cat:"Teks",level:"Menengah",hot:true,desc:"Mengganti kemunculan teks tertentu dengan teks baru.",syntax:"=SUBSTITUTE(teks, teks_lama, teks_baru, [ke-n])",example:"=SUBSTITUTE(\"2024/01\",\"/\",\"-\")",result:"\"2024-01\""},
+  {name:"TEXT",cat:"Teks",level:"Menengah",hot:true,desc:"Mengubah angka menjadi teks dengan format tertentu.",syntax:"=TEXT(nilai, format_teks)",example:"=TEXT(45000,\"Rp #,##0\")",result:"\"Rp 45,000\"",tip:"Gunakan untuk menggabungkan angka/tanggal dengan teks."},
+  {name:"VALUE",cat:"Teks",level:"Menengah",hot:false,desc:"Mengubah teks berupa angka menjadi nilai numerik.",syntax:"=VALUE(teks)",example:"=VALUE(\"1250\")",result:"1250"},
+  {name:"IF",cat:"Logika",level:"Dasar",hot:true,desc:"Melakukan pengecekan kondisi; hasilkan nilai A jika benar, nilai B jika salah.",syntax:"=IF(tes_logika, nilai_jika_benar, nilai_jika_salah)",example:"=IF(A2>=70, \"Lulus\", \"Tidak Lulus\")",result:"Lulus / Tidak Lulus",tip:"IF bisa di-nest hingga 64 level, tapi lebih baik gunakan IFS."},
+  {name:"IFS",cat:"Logika",level:"Menengah",hot:true,desc:"Mengecek beberapa kondisi berurutan, mengembalikan nilai dari kondisi pertama yang benar.",syntax:"=IFS(tes1, nilai1, tes2, nilai2, ...)",example:"=IFS(A2>=85,\"A\",A2>=70,\"B\",A2>=55,\"C\",TRUE,\"D\")",result:"Grade nilai siswa",tip:"Lebih bersih dari IF bertingkat."},
+  {name:"AND",cat:"Logika",level:"Dasar",hot:true,desc:"Mengembalikan TRUE jika semua kondisi terpenuhi.",syntax:"=AND(logika1, [logika2], ...)",example:"=AND(A2>0, B2<100)",result:"TRUE/FALSE",tip:"Biasanya dipakai di dalam IF."},
+  {name:"OR",cat:"Logika",level:"Dasar",hot:true,desc:"Mengembalikan TRUE jika minimal satu kondisi terpenuhi.",syntax:"=OR(logika1, [logika2], ...)",example:"=OR(A2=\"Jakarta\",A2=\"Bandung\")",result:"TRUE/FALSE"},
+  {name:"NOT",cat:"Logika",level:"Dasar",hot:false,desc:"Membalikkan nilai logika: TRUE jadi FALSE dan sebaliknya.",syntax:"=NOT(logika)",example:"=NOT(ISBLANK(A2))",result:"TRUE jika A2 tidak kosong"},
+  {name:"SWITCH",cat:"Logika",level:"Menengah",hot:false,desc:"Membandingkan ekspresi dengan daftar nilai, mengembalikan hasil yang cocok.",syntax:"=SWITCH(ekspresi, nilai1, hasil1, [nilai2, hasil2], ..., [default])",example:"=SWITCH(A2,1,\"Senin\",2,\"Selasa\",\"Hari lain\")",result:"Nama hari"},
+  {name:"VLOOKUP",cat:"Cari & Referensi",level:"Menengah",hot:true,desc:"Mencari nilai di kolom pertama tabel, mengembalikan nilai dari kolom yang ditentukan.",syntax:"=VLOOKUP(nilai_cari, tabel, kolom_ke, [tepat/hampir])",example:"=VLOOKUP(A2, B2:D100, 3, FALSE)",result:"Nilai di kolom ke-3",tip:"FALSE = pencarian tepat. Ganti dengan XLOOKUP jika ada (lebih fleksibel)."},
+  {name:"HLOOKUP",cat:"Cari & Referensi",level:"Menengah",hot:false,desc:"Seperti VLOOKUP tapi mencari secara horizontal (per baris).",syntax:"=HLOOKUP(nilai_cari, tabel, baris_ke, [tepat/hampir])",example:"=HLOOKUP(\"Q1\", B1:E5, 3, FALSE)",result:"Nilai di baris ke-3"},
+  {name:"INDEX",cat:"Cari & Referensi",level:"Menengah",hot:true,desc:"Mengembalikan nilai dari sel berdasarkan posisi baris dan kolom.",syntax:"=INDEX(array, nomor_baris, [nomor_kolom])",example:"=INDEX(A1:D10, 3, 2)",result:"Nilai sel baris 3, kolom 2",tip:"Sering dipasangkan dengan MATCH."},
+  {name:"MATCH",cat:"Cari & Referensi",level:"Menengah",hot:true,desc:"Mencari posisi relatif nilai dalam suatu rentang.",syntax:"=MATCH(nilai_cari, rentang_cari, [tipe])",example:"=MATCH(\"Budi\", A1:A50, 0)",result:"Nomor posisi Budi",tip:"Tipe 0 = tepat. Pasangkan dengan INDEX sebagai pengganti VLOOKUP."},
+  {name:"XLOOKUP",cat:"Cari & Referensi",level:"Menengah",hot:true,desc:"Versi modern VLOOKUP: cari di mana saja, kembalikan apa saja, tanpa batasan kolom.",syntax:"=XLOOKUP(nilai_cari, array_cari, array_return, [jika_tidak_ada])",example:"=XLOOKUP(A2, B:B, D:D, \"Tidak ditemukan\")",result:"Nilai dari kolom D",tip:"Tersedia di Excel 365/2019+. Lebih fleksibel dari VLOOKUP."},
+  {name:"OFFSET",cat:"Cari & Referensi",level:"Lanjut",hot:false,desc:"Mengembalikan referensi sel yang digeser dari titik awal.",syntax:"=OFFSET(referensi, baris, kolom, [tinggi], [lebar])",example:"=OFFSET(A1, 2, 1)",result:"Nilai sel C3"},
+  {name:"INDIRECT",cat:"Cari & Referensi",level:"Lanjut",hot:false,desc:"Mengembalikan referensi sel dari teks string.",syntax:"=INDIRECT(ref_teks, [a1_style])",example:"=INDIRECT(\"Sheet2!\"&A1)",result:"Isi sel dari sheet dinamis"},
+  {name:"TODAY",cat:"Tanggal & Waktu",level:"Dasar",hot:true,desc:"Mengembalikan tanggal hari ini secara otomatis.",syntax:"=TODAY()",example:"=TODAY()",result:"Tanggal hari ini",tip:"Nilainya diperbarui setiap kali file dibuka."},
+  {name:"NOW",cat:"Tanggal & Waktu",level:"Dasar",hot:false,desc:"Mengembalikan tanggal dan waktu saat ini.",syntax:"=NOW()",example:"=NOW()",result:"Tanggal + jam saat ini"},
+  {name:"DATE",cat:"Tanggal & Waktu",level:"Dasar",hot:true,desc:"Membuat tanggal dari komponen tahun, bulan, dan hari.",syntax:"=DATE(tahun, bulan, hari)",example:"=DATE(2026, 5, 17)",result:"17/05/2026"},
+  {name:"YEAR",cat:"Tanggal & Waktu",level:"Dasar",hot:true,desc:"Mengambil tahun dari sebuah tanggal.",syntax:"=YEAR(serial_tanggal)",example:"=YEAR(TODAY())",result:"2026"},
+  {name:"MONTH",cat:"Tanggal & Waktu",level:"Dasar",hot:true,desc:"Mengambil bulan (1–12) dari sebuah tanggal.",syntax:"=MONTH(serial_tanggal)",example:"=MONTH(TODAY())",result:"5"},
+  {name:"DAY",cat:"Tanggal & Waktu",level:"Dasar",hot:true,desc:"Mengambil hari (1–31) dari sebuah tanggal.",syntax:"=DAY(serial_tanggal)",example:"=DAY(TODAY())",result:"14"},
+  {name:"DATEDIF",cat:"Tanggal & Waktu",level:"Menengah",hot:true,desc:"Menghitung selisih antara dua tanggal dalam satuan tertentu.",syntax:"=DATEDIF(tanggal_awal, tanggal_akhir, satuan)",example:"=DATEDIF(A2, TODAY(), \"Y\")",result:"Selisih dalam tahun",tip:"Satuan: Y=tahun, M=bulan, D=hari. Fungsi tidak terdokumentasi tapi tetap berfungsi."},
+  {name:"WEEKDAY",cat:"Tanggal & Waktu",level:"Menengah",hot:false,desc:"Mengembalikan hari dalam seminggu sebagai angka.",syntax:"=WEEKDAY(serial_tanggal, [return_type])",example:"=WEEKDAY(TODAY(), 2)",result:"1=Senin, 7=Minggu"},
+  {name:"EOMONTH",cat:"Tanggal & Waktu",level:"Menengah",hot:false,desc:"Mengembalikan tanggal hari terakhir bulan, beberapa bulan ke depan/belakang.",syntax:"=EOMONTH(tanggal_mulai, bulan)",example:"=EOMONTH(TODAY(), 0)",result:"Hari terakhir bulan ini"},
+  {name:"NETWORKDAYS",cat:"Tanggal & Waktu",level:"Menengah",hot:false,desc:"Menghitung jumlah hari kerja antara dua tanggal.",syntax:"=NETWORKDAYS(tanggal_awal, tanggal_akhir, [hari_libur])",example:"=NETWORKDAYS(A2, B2)",result:"Jumlah hari kerja"},
+  {name:"IFERROR",cat:"Info & Error",level:"Menengah",hot:true,desc:"Mengembalikan nilai alternatif jika formula menghasilkan error.",syntax:"=IFERROR(nilai, nilai_jika_error)",example:"=IFERROR(VLOOKUP(A2,B:C,2,0), \"-\")",result:"Nilai atau \"-\" jika error",tip:"Selalu pakai ini di VLOOKUP/XLOOKUP untuk tampilan lebih bersih."},
+  {name:"IFNA",cat:"Info & Error",level:"Menengah",hot:false,desc:"Mengembalikan nilai alternatif hanya jika hasilnya #N/A.",syntax:"=IFNA(nilai, nilai_jika_na)",example:"=IFNA(XLOOKUP(A2,B:B,C:C), \"Tidak ditemukan\")",result:"Nilai atau teks default"},
+  {name:"ISBLANK",cat:"Info & Error",level:"Dasar",hot:true,desc:"Memeriksa apakah sebuah sel kosong.",syntax:"=ISBLANK(nilai)",example:"=ISBLANK(A2)",result:"TRUE / FALSE"},
+  {name:"ISNUMBER",cat:"Info & Error",level:"Dasar",hot:false,desc:"Memeriksa apakah sebuah nilai adalah angka.",syntax:"=ISNUMBER(nilai)",example:"=ISNUMBER(A2)",result:"TRUE / FALSE"},
+  {name:"ISTEXT",cat:"Info & Error",level:"Dasar",hot:false,desc:"Memeriksa apakah sebuah nilai adalah teks.",syntax:"=ISTEXT(nilai)",example:"=ISTEXT(A2)",result:"TRUE / FALSE"},
+  {name:"PMT",cat:"Keuangan",level:"Menengah",hot:true,desc:"Menghitung cicilan tetap pinjaman berdasarkan bunga, periode, dan nilai pinjaman.",syntax:"=PMT(suku_bunga, periode, nilai_sekarang)",example:"=PMT(0.05/12, 36, -10000000)",result:"Cicilan bulanan",tip:"Suku bunga harus sesuai periode (bulanan → bagi 12)."},
+  {name:"NPV",cat:"Keuangan",level:"Lanjut",hot:false,desc:"Menghitung nilai sekarang bersih dari serangkaian arus kas.",syntax:"=NPV(suku_bunga, nilai1, [nilai2], ...)",example:"=NPV(0.1, B2:B6)",result:"Nilai NPV proyek"},
+  {name:"IRR",cat:"Keuangan",level:"Lanjut",hot:false,desc:"Menghitung tingkat pengembalian internal dari arus kas.",syntax:"=IRR(nilai, [tebakan])",example:"=IRR(B1:B6)",result:"Persentase IRR"},
+  {name:"PV",cat:"Keuangan",level:"Menengah",hot:false,desc:"Menghitung nilai sekarang dari pembayaran masa depan.",syntax:"=PV(suku_bunga, periode, pembayaran, [nilai_masa_depan])",example:"=PV(0.08, 5, 0, 1000000)",result:"Nilai sekarang"},
+  {name:"FV",cat:"Keuangan",level:"Menengah",hot:false,desc:"Menghitung nilai masa depan dari investasi berdasarkan suku bunga tetap.",syntax:"=FV(suku_bunga, periode, pembayaran, [nilai_sekarang])",example:"=FV(0.08, 10, -1000000, 0)",result:"Nilai investasi di masa depan"},
+  {name:"FILTER",cat:"Array Dinamis",level:"Lanjut",hot:true,desc:"Memfilter array berdasarkan kondisi tertentu, hasilnya tumpah ke sel berikutnya.",syntax:"=FILTER(array, termasuk, [jika_kosong])",example:"=FILTER(A2:C20, B2:B20=\"Jakarta\")",result:"Baris dari Jakarta saja",tip:"Tersedia di Excel 365. Hasilnya 'spill' otomatis ke bawah."},
+  {name:"SORT",cat:"Array Dinamis",level:"Lanjut",hot:false,desc:"Mengurutkan isi array secara dinamis.",syntax:"=SORT(array, [sort_index], [sort_order])",example:"=SORT(A2:B20, 2, -1)",result:"Data diurutkan kolom 2 descending"},
+  {name:"UNIQUE",cat:"Array Dinamis",level:"Lanjut",hot:true,desc:"Mengembalikan daftar nilai unik dari suatu rentang.",syntax:"=UNIQUE(array, [by_col], [exactly_once])",example:"=UNIQUE(A2:A100)",result:"Daftar tanpa duplikat"},
+  {name:"SEQUENCE",cat:"Array Dinamis",level:"Lanjut",hot:false,desc:"Membuat urutan angka secara otomatis.",syntax:"=SEQUENCE(baris, [kolom], [mulai], [langkah])",example:"=SEQUENCE(10, 1, 1, 1)",result:"Angka 1 sampai 10"},
+];
+
+const cats = ["Semua", ...Object.keys(CAT_COLORS)];
+const levels = ["Semua","Dasar","Menengah","Lanjut"];
+let activeCat = "Semua", activeLvl = "Semua", searchQ = "", openCard = null;
+
+function filtered() {
+  return formulas.filter(f => {
+    const mc = activeCat === "Semua" || f.cat === activeCat;
+    const ml = activeLvl === "Semua" || f.level === activeLvl;
+    const q = searchQ.toLowerCase();
+    const mq = !q || f.name.toLowerCase().includes(q) || f.desc.toLowerCase().includes(q) || f.cat.toLowerCase().includes(q);
+    return mc && ml && mq;
+  });
+}
+
+function renderFilters() {
+  const cf = document.getElementById("catFilters");
+  cf.innerHTML = cats.map(c =>
+    `<button class="fbtn${activeCat===c?' active':''}" data-cat="${c}">
+      <span class="dot" style="background:${CAT_COLORS[c]||'transparent'};${c==='Semua'?'display:none':''}"></span>${c}
+    </button>`
+  ).join("");
+  cf.querySelectorAll(".fbtn").forEach(b => b.addEventListener("click", () => { activeCat = b.dataset.cat; render(); }));
+
+  const lf = document.getElementById("lvlFilters");
+  lf.innerHTML = levels.map(l =>
+    `<button class="fbtn${activeLvl===l?' active':''}" data-lv="${l}">${l}</button>`
+  ).join("");
+  lf.querySelectorAll(".fbtn").forEach(b => b.addEventListener("click", () => { activeLvl = b.dataset.lv; render(); }));
+}
+
+function renderStats(list) {
+  const byLvl = {Dasar:0, Menengah:0, Lanjut:0};
+  list.forEach(f => byLvl[f.level]++);
+  document.getElementById("statsRow").innerHTML =
+    `<div class="stat-card"><div class="stat-num">${list.length}</div><div class="stat-lbl">Total</div></div>` +
+    `<div class="stat-card"><div class="stat-num" style="color:var(--green-bd)">${byLvl.Dasar}</div><div class="stat-lbl">Dasar</div></div>` +
+    `<div class="stat-card"><div class="stat-num" style="color:var(--amber-bd)">${byLvl.Menengah}</div><div class="stat-lbl">Menengah</div></div>` +
+    `<div class="stat-card"><div class="stat-num" style="color:var(--coral-bd)">${byLvl.Lanjut}</div><div class="stat-lbl">Lanjut</div></div>`;
+}
+
+function lvlClass(l) { return l==="Dasar"?"badge-d":l==="Menengah"?"badge-m":"badge-l"; }
+
+function renderCards(list) {
+  const content = document.getElementById("content");
+  if (!list.length) {
+    content.innerHTML = `<div class="empty"><i class="ti ti-mood-empty"></i>Tidak ada formula yang cocok.</div>`;
+    return;
+  }
+  let grouped = {};
+  if (activeCat === "Semua") { list.forEach(f => { if (!grouped[f.cat]) grouped[f.cat]=[]; grouped[f.cat].push(f); }); }
+  else { grouped[activeCat] = list; }
+
+  let html = "";
+  for (const [cat, items] of Object.entries(grouped)) {
+    if (activeCat === "Semua") html += `<div class="section-head"><span class="dot" style="background:${CAT_COLORS[cat]}"></span>${cat}</div>`;
+    html += `<div class="grid">`;
+    items.forEach(f => {
+      const isOpen = openCard === f.name;
+      html += `<div class="card${isOpen?' open':''}" data-name="${f.name}">
+        <div class="card-head">
+          <div>
+            <div class="card-name">${f.name}</div>
+            <div class="card-meta"><span class="dot" style="background:${CAT_COLORS[f.cat]}"></span>${f.cat}</div>
+          </div>
+          <div class="badges">
+            ${f.hot?'<span class="badge badge-hot"><i class="ti ti-star" style="font-size:10px"></i> Sering</span>':''}
+            <span class="badge ${lvlClass(f.level)}">${f.level}</span>
+            <i class="ti ti-chevron-down chev"></i>
+          </div>
+        </div>
+        <p class="card-desc">${f.desc}</p>
+        <div class="detail">
+          <p class="detail-label">Sintaks</p>
+          <div class="syntax-box">${f.syntax}</div>
+          <p class="detail-label">Contoh</p>
+          <div class="example-row">
+            <span class="ex-code">${f.example}</span>
+            <span class="ex-res">${f.result}</span>
+          </div>
+          ${f.tip ? `<div class="tip-box"><i class="ti ti-bulb"></i><span>${f.tip}</span></div>` : ''}
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+    if (activeCat === "Semua") html += `<div style="height:4px"></div>`;
+  }
+  content.innerHTML = html;
+  content.querySelectorAll(".card").forEach(c => c.addEventListener("click", () => {
+    openCard = openCard === c.dataset.name ? null : c.dataset.name;
+    render();
+  }));
+}
+
+function render() {
+  renderFilters();
+  const list = filtered();
+  renderStats(list);
+  renderCards(list);
+}
+
+document.getElementById("searchInput").addEventListener("input", e => { searchQ = e.target.value; render(); });
+render();
+</script>
+</body>
+</html>
