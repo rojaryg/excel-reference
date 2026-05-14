@@ -5,28 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Referensi Formula Excel (Dark Mode)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
 <style>
+  /* Import eksternal Google Sans jika tersedia secara publik */
+  @font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url('https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     /* Latar Belakang & Permukaan */
-    --bg: #1c1c1a; /* Abu-abu sangat gelap untuk kartu & kontrol */
-    --bg-2: #262624; /* Gelap untuk input, kotak tip, kotak sintaks */
-    --bg-3: #000000; /* Hitam murni untuk latar belakang halaman */
+    --bg: #1c1c1a; 
+    --bg-2: #262624; 
+    --bg-3: #000000; 
 
     /* Teks */
-    --text: #f0efe8; /* Putih pudar untuk teks utama */
-    --text-2: #a8a89e; /* Abu-abu terang untuk teks sekunder */
-    --text-3: #6a6a64; /* Abu-abu sedang untuk placeholder/label */
+    --text: #f0efe8; 
+    --text-2: #a8a89e; 
+    --text-3: #6a6a64; 
 
     /* Garis Tepi */
     --border: rgba(255,255,255,0.08);
     --border-2: rgba(255,255,255,0.15);
 
-    /* Aksen & State Warna (Disesuaikan untuk mode gelap) */
-    --accent: #1a1a18; /* Tidak terlalu berdampak, biarkan */
+    /* Aksen & State Warna */
+    --accent: #1a1a18; 
     --green-bg: #173404; --green-text: #C0DD97; --green-bd: #3B6D11;
     --amber-bg: #412402; --amber-text: #FAC775; --amber-bd: #854F0B;
     --coral-bg: #4A1B0C; --coral-text: #F0997B; --coral-bd: #993C1D;
@@ -35,15 +49,16 @@
 
     /* Lainnya */
     --radius: 10px; --radius-sm: 6px;
-    --font: 'DM Sans', sans-serif;
+    /* Mengubah font utama menjadi Google Sans */
+    --font: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
     --mono: 'DM Mono', monospace;
-    --shadow: 0 1px 3px rgba(0,0,0,0.3); /* Bayangan sedikit lebih gelap */
+    --shadow: 0 1px 3px rgba(0,0,0,0.3); 
   }
 
   body {
     font-family: var(--font);
-    background: var(--bg-3); /* Sekarang hitam murni */
-    color: var(--text); /* Putih pudar */
+    background: var(--bg-3); 
+    color: var(--text); 
     font-size: 15px;
     line-height: 1.6;
     min-height: 100vh;
@@ -53,7 +68,7 @@
 
   .page-header { margin-bottom: 2rem; }
   .page-title { font-size: 26px; font-weight: 500; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
-  .page-title i { font-size: 24px; color: var(--green-bd); }
+  .page-title i { font-size: 24px; color: var(--green-text); /* Mengubah icon header agar lebih kontras */ }
   .page-sub { font-size: 14px; color: var(--text-2); }
 
   .controls { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
@@ -86,7 +101,7 @@
 
   .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1.25rem; }
   .stat-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; text-align: center; box-shadow: var(--shadow); }
-  .stat-num { font-size: 22px; font-weight: 500; }
+  .stat-num { font-size: 24px; font-weight: 500; } /* Sedikit diperbesar agar angka lebih prominen */
   .stat-lbl { font-size: 11px; color: var(--text-2); margin-top: 1px; }
 
   .section-head { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin: 1.5rem 0 8px; display: flex; align-items: center; gap: 6px; }
@@ -132,7 +147,7 @@
     padding: 8px 10px; font-size: 12px; color: var(--text-2); line-height: 1.5;
     display: flex; gap: 6px; align-items: flex-start;
   }
-  .tip-box i { flex-shrink: 0; font-size: 14px; margin-top: 1px; color: var(--amber-bd); }
+  .tip-box i { flex-shrink: 0; font-size: 14px; margin-top: 1px; color: var(--amber-text); /* Mengubah warna lampu bohlam tip */ }
 
   .empty { text-align: center; padding: 3rem; color: var(--text-3); font-size: 14px; }
   .empty i { font-size: 32px; display: block; margin-bottom: 8px; }
@@ -277,14 +292,16 @@ function renderFilters() {
   lf.querySelectorAll(".fbtn").forEach(b => b.addEventListener("click", () => { activeLvl = b.dataset.lv; render(); }));
 }
 
+// UPDATE KONTRAS ANGKA STATISTIK DI SINI:
+// Mengganti warna *border* (--green-bd dll) yang gelap menjadi warna *teks* (--green-text dll) yang terang
 function renderStats(list) {
   const byLvl = {Dasar:0, Menengah:0, Lanjut:0};
   list.forEach(f => byLvl[f.level]++);
   document.getElementById("statsRow").innerHTML =
     `<div class="stat-card"><div class="stat-num">${list.length}</div><div class="stat-lbl">Total</div></div>` +
-    `<div class="stat-card"><div class="stat-num" style="color:var(--green-bd)">${byLvl.Dasar}</div><div class="stat-lbl">Dasar</div></div>` +
-    `<div class="stat-card"><div class="stat-num" style="color:var(--amber-bd)">${byLvl.Menengah}</div><div class="stat-lbl">Menengah</div></div>` +
-    `<div class="stat-card"><div class="stat-num" style="color:var(--coral-bd)">${byLvl.Lanjut}</div><div class="stat-lbl">Lanjut</div></div>`;
+    `<div class="stat-card"><div class="stat-num" style="color:var(--green-text)">${byLvl.Dasar}</div><div class="stat-lbl">Dasar</div></div>` +
+    `<div class="stat-card"><div class="stat-num" style="color:var(--amber-text)">${byLvl.Menengah}</div><div class="stat-lbl">Menengah</div></div>` +
+    `<div class="stat-card"><div class="stat-num" style="color:var(--coral-text)">${byLvl.Lanjut}</div><div class="stat-lbl">Lanjut</div></div>`;
 }
 
 function lvlClass(l) { return l==="Dasar"?"badge-d":l==="Menengah"?"badge-m":"badge-l"; }
